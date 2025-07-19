@@ -13,14 +13,11 @@ public class Task implements Serializable {
 
     @Column(nullable = false)
     private String name;
-
     @Column(nullable = false)
     private String category;
 
     @Column(nullable = false)
     private String assignedTo;
-
-    // ... additional members, often include @OneToMany mappings
 
     public Task() {
         // no-args constructor required by JPA spec
@@ -45,6 +42,20 @@ public class Task implements Serializable {
 
     public void setAssignedTo(String assignedTo) {
         this.assignedTo = assignedTo;
+    }
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     // ... etc
