@@ -37,7 +37,14 @@ public class TaskController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
-
+    @GetMapping("/assignedTo/{assignedTo}")
+    public ResponseEntity<List<Task>> getTasksByAssignedTo(@PathVariable String assignedTo) {
+        List<Task> tasks = taskService.getTasksByAssignedTo(assignedTo);
+        if (tasks.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(tasks);
+    }
     // Update Task
     @PutMapping("/{id}")
     public ResponseEntity<Task> updateTask(@PathVariable Long id, @RequestBody Task task) {

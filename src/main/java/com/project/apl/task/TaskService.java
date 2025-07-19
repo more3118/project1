@@ -27,6 +27,9 @@ public class TaskService {
     public Optional<Task> getTaskById(Long id) {
         return taskRepository.findById(Math.toIntExact(id));
     }
+    public List<Task> getTasksByAssignedTo(String assignedTo) {
+        return taskRepository.findByAssignedTo(assignedTo);
+    }
 
     public Task updateTask(Long id, Task updatedTask) {
         return taskRepository.findById(Math.toIntExact(id))
