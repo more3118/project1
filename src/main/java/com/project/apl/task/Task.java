@@ -18,21 +18,30 @@ public class Task implements Serializable {
 
     @Column(nullable = false)
     private String assignedTo;
+    @Column(nullable = false)
+    private boolean isCompleted;
 
     public Task() {
         // no-args constructor required by JPA spec
         // this one is protected since it shouldn't be used directly
     }
-    public Task(String name, String category, String assignedTo) {
+    public Task(String name, String category, String assignedTo,boolean isCompleted) {
         this.name = name;
         this.category = category;
         this.assignedTo = assignedTo;
+        this.isCompleted = isCompleted;
     }
 
     public String getName() {
         return this.name;
     }
+    public boolean isCompleted() {
+        return isCompleted;
+    }
 
+    public void setCompleted(boolean completed) {
+        isCompleted = completed;
+    }
     public String getAssignedTo() {
         return this.assignedTo;
     }
@@ -57,7 +66,5 @@ public class Task implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
-    // ... etc
 
 }
