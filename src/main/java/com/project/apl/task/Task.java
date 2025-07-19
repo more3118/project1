@@ -6,9 +6,8 @@ import java.io.Serializable;
 
 @Entity
 public class Task implements Serializable {
-
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; //1
 
     @Column(nullable = false)
