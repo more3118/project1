@@ -6,41 +6,37 @@ import java.io.Serializable;
 
 @Entity
 public class Task implements Serializable {
-
     @Id
-    @GeneratedValue
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id; //1
 
     @Column(nullable = false)
-    private String name;
+    private String name; //2
     @Column(nullable = false)
-    private String category;
+    private String category; //3
 
     @Column(nullable = false)
-    private String assignedTo;
+    private String assignedTo; // 4
     @Column(nullable = false)
-    private boolean isCompleted;
+    private boolean completed; //5
 
     public Task() {
-        // no-args constructor required by JPA spec
-        // this one is protected since it shouldn't be used directly
     }
-    public Task(String name, String category, String assignedTo,boolean isCompleted) {
+    public Task(String name, String category, String assignedTo,boolean completed) {
         this.name = name;
         this.category = category;
         this.assignedTo = assignedTo;
-        this.isCompleted = isCompleted;
+        this.completed = completed;
     }
 
     public String getName() {
         return this.name;
     }
     public boolean isCompleted() {
-        return isCompleted;
+        return completed;
     }
-
     public void setCompleted(boolean completed) {
-        isCompleted = completed;
+        this.completed = completed;
     }
     public String getAssignedTo() {
         return this.assignedTo;
@@ -48,21 +44,18 @@ public class Task implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
-
     public void setAssignedTo(String assignedTo) {
         this.assignedTo = assignedTo;
     }
     public String getCategory() {
         return category;
     }
-
     public void setCategory(String category) {
         this.category = category;
     }
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
