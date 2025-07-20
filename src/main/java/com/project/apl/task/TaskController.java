@@ -46,15 +46,15 @@ public class TaskController {
         return ResponseEntity.ok(tasks);
     }
     // Update Task
-    @PutMapping("/{id}")
-    public ResponseEntity<Task> updateTask(@PathVariable Long id, @RequestBody Task task) {
-        try {
-            Task updatedTask = taskService.updateTask(id, task);
-            return ResponseEntity.ok(updatedTask);
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
+        @PutMapping("/{id}")
+        public ResponseEntity<Task> updateTask(@PathVariable Long id, @RequestBody Task task) {
+            try {
+                Task updatedTask = taskService.updateTask(id, task);
+                return ResponseEntity.ok(updatedTask);
+            } catch (RuntimeException e) {
+                return ResponseEntity.notFound().build();
+            }
         }
-    }
 
     // Delete Tasks
     @DeleteMapping("/{id}")

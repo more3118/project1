@@ -2,6 +2,7 @@ package com.project.apl.task;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -30,13 +31,14 @@ public class TaskService {
     public List<Task> getTasksByAssignedTo(String assignedTo) {
         return taskRepository.findByAssignedTo(assignedTo);
     }
-
+    @Transactional
     public Task updateTask(Long id, Task updatedTask) {
         return taskRepository.findById(Math.toIntExact(id))
                 .map(task -> {
                     task.setName(updatedTask.getName());
                     task.setCategory(updatedTask.getCategory());
                     task.setAssignedTo(updatedTask.getAssignedTo());
+                    task.setCompleted(updatedTask.isCompleted());
                     return taskRepository.save(task);
                 })
                 .orElseThrow(() -> new RuntimeException("Task not found with id " + id));
